@@ -72,7 +72,7 @@
 (define icon-path (get-icon-path icon-ext))
 
 (define-script compile
-  #:label "compile"
+  #:label "compile-standalone"
   (λ (selection #:file f)
     (if (system (get-raco-command-line os-type icon-path f))
         (begin (shell-execute "explore" (get-parent-folder-str f) ""
