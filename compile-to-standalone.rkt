@@ -34,36 +34,14 @@
 ;; get the current platform's icon extension
 (define (get-current-platforms-icon-ext os-type)
   (case os-type
-    (('unix)    *nix-icon-ext*)
-    (('windows) *win-icon-ext*)
-    (('macosx)  *mac-icon-ext*)))
+    ((unix)    *nix-icon-ext*)
+    ((windows) *win-icon-ext*)
+    ((macosx)  *mac-icon-ext*)))
 
 ;; find files of a given extension recursively from the current directory
-;Causes an error from Windows 10:
-;Error in script file "C:\\...\\compile-standalone.rkt":
-; path-extension=?: contract violation
-;  expected: (or/c bytes? string?)
-;  given: #<path:C:\Code\Racket\...\icon\plane_icon.ico>
 (define (find-files/ext path ext)
   (define (ext-file? f)
-    (and (not (void? f))
-         (or (path? f) (string? f))
-         (file-exists? f)
-         (path-has-extension? f ext)))
-  (find-files ext-file? path))
-
-;; same as previous, but using string-suffix?
-;Causes an error from Windows 10:
-;Error in script file "C:\\...\\compile-standalone.rkt":
-; path-extension=?: contract violation
-;  expected: (or/c bytes? string?)
-;  given: #<void>
-(define (find-files/ext# path ext)
-  (define (ext-file? f)
-    (and (not (void? f))
-         (or (path? f) (string? f))
-         (file-exists? f)
-         (string-suffix? (path->string f) ext)))
+    (path-has-extension? f ext))
   (find-files ext-file? path))
 
 ;; if an icon folder exists, returns the enclosing icon file path
@@ -71,7 +49,7 @@
   (define icon-dir
     (build-path parent-path *icon-dirname*))
   (if (directory-exists? icon-dir)
-      (let ((icon-files (find-files/ext# icon-dir icon-ext)))
+      (let ((icon-files (find-files/ext icon-dir icon-ext)))
         (if (null? icon-files) #f
             (first icon-files)))
       #f))
@@ -81,7 +59,7 @@
   (string-append *raco-command-line*
                  (if (eq? os-type 'windows) *raco-embed-dlls* "")
                  (if icon-path
-                     (string-append *raco-icon-switch* icon-path " ") "")
+                     (string-append *raco-icon-switch* (path->string icon-path) " ") "")
                  (if gui? *raco-gui* "")
                  (path->string source-file)))
 ; unit test
@@ -100,16 +78,16 @@
 (define (explore-path path os-type)
   (define file-browse-command
     (case os-type
-      (('unix)    *nix-file-browser-cmd*)
-      (('windows) *win-file-browser-cmd*)
-      (('macosx)  *mac-file-browser-cmd*)))
+      ((unix)    *nix-file-browser-cmd*)
+      ((windows) *win-file-browser-cmd*)
+      ((macosx)  *mac-file-browser-cmd*)))
   (system (string-append file-browse-command " \"" (path->string (path-only path)) "\"")))
 
 ;;; main
 
 (define-script compile
   #:label "compile-standalone"
-  (λ (selection #:file f #:definitions defs-text)
+  (λ (selection #:file f) ; #:definitions defs-text)
 
     (define gui?
       (eq? 'yes (message-box *app-name* "Use GRacket? If you select 'No', Racket will be used." #f (list 'yes-no))))
