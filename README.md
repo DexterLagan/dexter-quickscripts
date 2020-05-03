@@ -1,7 +1,9 @@
-# compile-to-standalone-quick
+# Quick Scripts for DrRacket
 
-A small QuickScript for DrRacket that compiles the current Racket program to standalone executable, optionally embedding an icon in a platform-independent manner.
+A collection of useful QuickScripts for DrRacket.
 
-How to install: open this script from DrRacket -> Scripts -> Open...
+How to Install:
+Copy the scripts to your quickscript folder.
 
-How to use: Scripts -> compile-to-standalone
+How to Use:
+Scripts should automatically appear in your Scripts menu.
