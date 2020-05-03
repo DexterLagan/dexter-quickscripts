@@ -8,6 +8,7 @@
 ; to compile the current program to standalone executable,
 ; optionally using the first icon found in /icon.
 ; Platform-independent.
+; By Dexter Santucci and Laurent Orseau
 
 ;;; consts
 
@@ -18,9 +19,15 @@
 (define *raco-icon-switch* "--ico ")
 (define *icon-dirname* "icon")
 
+; icon file extensions for each OS
 (define *nix-icon-ext* #".png")
 (define *win-icon-ext* #".ico")
 (define *mac-icon-ext* #".icns")
+
+; shell file explorer commands for each OS
+(define *nix-file-browser-cmd* "xdg-open") ; mimeopen -n
+(define *win-file-browser-cmd* "explorer")
+(define *mac-file-browser-cmd* "open")
 
 ;;; defs
 
@@ -39,8 +46,24 @@
 ;  given: #<path:C:\Code\Racket\...\icon\plane_icon.ico>
 (define (find-files/ext path ext)
   (define (ext-file? f)
-    (and (file-exists? f) ; regular files only
+    (and (not (void? f))
+         (or (path? f) (string? f))
+         (file-exists? f)
          (path-has-extension? f ext)))
+  (find-files ext-file? path))
+
+;; same as previous, but using string-suffix?
+;Causes an error from Windows 10:
+;Error in script file "C:\\...\\compile-standalone.rkt":
+; path-extension=?: contract violation
+;  expected: (or/c bytes? string?)
+;  given: #<void>
+(define (find-files/ext# path ext)
+  (define (ext-file? f)
+    (and (not (void? f))
+         (or (path? f) (string? f))
+         (file-exists? f)
+         (string-suffix? (path->string f) ext)))
   (find-files ext-file? path))
 
 ;; if an icon folder exists, returns the enclosing icon file path
@@ -48,16 +71,10 @@
   (define icon-dir
     (build-path parent-path *icon-dirname*))
   (if (directory-exists? icon-dir)
-      (let ((icon-files (find-files/ext icon-dir icon-ext)))
+      (let ((icon-files (find-files/ext# icon-dir icon-ext)))
         (if (null? icon-files) #f
             (first icon-files)))
       #f))
-
-;; returns the path to the folder containing f
-(define (get-parent-folder f)
-  (define-values (base name folder?)
-    (split-path f))
-  base)
 
 ;; generates a raco command line, given the source file
 (define (get-raco-command-line os-type icon-path gui? source-file)
@@ -78,25 +95,32 @@
   (check-equal? (get-raco-command-line 'macosx "icon/mac-icon.icns" #f (string->path "source-file-mac.rkt"))
                 "raco exe --ico icon/mac-icon.icns source-file-mac.rkt"))
 
+;; opens a file explorer window given a path and the system type
+; thanks Laurent!
+(define (explore-path path os-type)
+  (define file-browse-command
+    (case os-type
+      (('unix)    *nix-file-browser-cmd*)
+      (('windows) *win-file-browser-cmd*)
+      (('macosx)  *mac-file-browser-cmd*)))
+  (system (string-append file-browse-command " \"" (path->string (path-only path)) "\"")))
+
 ;;; main
 
 (define-script compile
   #:label "compile-standalone"
   (λ (selection #:file f #:definitions defs-text)
 
+    (define gui?
+      (eq? 'yes (message-box *app-name* "Use GRacket? If you select 'No', Racket will be used." #f (list 'yes-no))))
     (define os-type (system-type))
     (define icon-ext (get-current-platforms-icon-ext os-type))
-    (define parent-path (get-parent-folder f))
-    (define parent-path-str (path->string parent-path))
+    (define parent-path (path-only f))
     (define icon-path (get-icon-path parent-path icon-ext))
-   
-    (define gui?
-      (or (send defs-text find-string "#lang racket/gui")
-          (send defs-text find-string "(require racket/gui")))
+    
     (define raco-command (get-raco-command-line os-type icon-path gui? f))
     (if (system raco-command)
-        (begin (shell-execute "explore" parent-path-str ""
-                              (current-directory) 'sw_shownormal))
+        (begin (explore-path parent-path os-type))
         (void (message-box *app-name* "Error during compilation.")))))
 
 
