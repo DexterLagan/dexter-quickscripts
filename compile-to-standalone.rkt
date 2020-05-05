@@ -59,9 +59,9 @@
   (string-append *raco-command-line*
                  (if (eq? os-type 'windows) *raco-embed-dlls* "")
                  (if icon-path
-                     (string-append *raco-icon-switch* (path->string icon-path) " ") "")
+                     (string-append *raco-icon-switch* "\"" (path->string icon-path) "\" ") "")
                  (if gui? *raco-gui* "")
-                 (path->string source-file)))
+                 "\"" (path->string source-file) "\""))
 ; unit test
 (module+ test
   (check-equal? (get-raco-command-line 'windows "icon/win-icon.ico" #t (string->path "source-file.rkt"))
