@@ -45,6 +45,22 @@
     (void (message-box *app-name* (string-append (apply ~a args) "  ")))
     (exit 1)))
 
+;; macro combines rackunit's check-equal?, check-true and check-false
+;; does not require rackunit to be required at the module level
+;; usage:
+;;(assert (string-append "a" "b") "ab")      ; passes
+;;(assert (string-append "a" "b" "c") "cba") ; fails
+(define-syntax (assert stx)
+  (syntax-parse stx
+    [(_ ?a ?b)
+     #'(module+ test
+         (require rackunit)
+         (check-equal? ?a ?b #'?a))]
+    [(_ ?a)
+     #'(module+ test
+         (require rackunit)
+         (check-true ?a #'?a))]))
+
 ; Macro that defines whichever parameters are fed to it and fills them in from command line
 (define-syntax define-command-line-params
   (syntax-rules ()
@@ -70,7 +86,7 @@
                            (string-replace _ " " "-")) "Hello World")
                 "hello-world"))
 ---
-)
+  )
 
 ;;; defs
 
