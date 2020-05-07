@@ -8,7 +8,6 @@ Copy the scripts to your quickscript folder.
 How to Use:
 Scripts should automatically appear in your Scripts menu.
 
-What are they?
 compile-standalone compiles the current program to a standalone binary, and automatically imports an icon (located in ./icon). Unlike DrRacket's default compilation option, it does not zip the resulting files.
 
 generate-provide generates a provide form for the current module, and automatically writes a summary of each exported function.
