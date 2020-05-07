@@ -52,14 +52,16 @@
 ;;(assert (string-append "a" "b" "c") "cba") ; fails
 (define-syntax (assert stx)
   (syntax-parse stx
-    [(_ ?a ?b)
-     #'(module+ test
+    [(_assert ?a ?b)
+     (quasisyntax/loc stx
+       (module+ test
          (require rackunit)
-         (check-equal? ?a ?b #'?a))]
-    [(_ ?a)
-     #'(module+ test
+         #,(syntax/loc stx (check-equal? ?a ?b #'?a))))]
+    [(_assert ?a)
+     (quasisyntax/loc stx
+       (module+ test
          (require rackunit)
-         (check-true ?a #'?a))]))
+         #,(syntax/loc stx (check-true ?a #'?a))))]))
 
 ; Macro that defines whichever parameters are fed to it and fills them in from command line
 (define-syntax define-command-line-params
