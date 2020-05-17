@@ -97,9 +97,12 @@
     (define icon-path (get-icon-path parent-path icon-ext))
     
     (define raco-command (get-raco-command-line os-type icon-path gui? f))
+    (show-loading)
     (if (system raco-command)
-        (begin (explore-path parent-path os-type))
-        (void (message-box *app-name* "Error during compilation.")))))
+        (begin (hide-loading)
+               (explore-path parent-path os-type))
+        (begin (hide-loading)
+               (void (message-box *app-name* "Error during compilation."))))))
 
 
 ; EOF
