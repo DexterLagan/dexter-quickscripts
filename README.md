@@ -2,13 +2,13 @@
 
 A collection of useful QuickScripts for DrRacket.
 
-<b>How to Install:</b><br>
+<h2>How to Install:</h2>
 Copy the scripts to your quickscript folder. On Windows, this path is:<br>
 <pre>
 %USERPROFILE%\AppData\Roaming\Racket\quickscript\user-scripts
 </pre>
 
-<b>How to Use:</b><br>
+<h2>How to Use:</h2>
 In DrRacket, click on the 'Scripts' menu, and click on the script you want to use.
 
 <u><b>Here is a short description of each script:</u></b><br>
