@@ -26,6 +26,6 @@ generates a program skeleton with nicely commented sections, and optionally incl
 adds a back-slash ('\') before every double-quote ('"') in the selection.
 
 <br>
-Cheers,<br>
+Cheers,<br><br>
 
 Dexter
