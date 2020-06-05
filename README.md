@@ -3,7 +3,10 @@
 A collection of useful QuickScripts for DrRacket.
 
 <b>How to Install:</b><br>
-Copy the scripts to your quickscript folder.
+Copy the scripts to your quickscript folder. On Windows, this path is:<br>
+<pre>
+%USERPROFILE%\AppData\Roaming\Racket\quickscript\user-scripts
+</pre>
 
 <b>How to Use:</b><br>
 Scripts should automatically appear in your Scripts menu.
@@ -22,7 +25,7 @@ generates a program skeleton with nicely commented sections, and optionally incl
 <b>escape-double-quotes</b><br>
 adds a back-slash ('\') before every double-quote ('"') in the selection.
 
-
+<br>
 Cheers,
 
 Dexter
