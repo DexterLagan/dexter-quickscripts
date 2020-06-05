@@ -11,7 +11,7 @@ Copy the scripts to your quickscript folder. On Windows, this path is:<br>
 <h2>How to Use:</h2>
 In DrRacket, click on the 'Scripts' menu, and click on the script you want to use.
 
-<u><b>Here is a short description of each script:</u></b><br>
+<h2>What does each script do?</h2><br>
 
 <b>compile-standalone</b><br>
 compiles the current program to a standalone binary, and automatically imports an icon (located in ./icon). Unlike DrRacket's default compilation option, it does not zip the resulting files.
