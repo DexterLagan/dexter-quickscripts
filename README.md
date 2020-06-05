@@ -9,7 +9,7 @@ Copy the scripts to your quickscript folder. On Windows, this path is:<br>
 </pre>
 
 <b>How to Use:</b><br>
-Scripts should automatically appear in your Scripts menu.
+In DrRacket, click on the 'Scripts' menu, and click on the script you want to use.
 
 <u><b>Here is a short description of each script:</u></b><br>
 
@@ -27,5 +27,5 @@ adds a back-slash ('\') before every double-quote ('"') in the selection.
 
 <br>
 Cheers,
-
+<br>
 Dexter
