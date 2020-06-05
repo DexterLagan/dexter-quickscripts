@@ -19,7 +19,7 @@ compiles the current program to a standalone binary, and automatically imports a
 <b>generate-provide</b><br>
 generates a provide form for the current module, and automatically writes a summary of each exported function.
 
-<b>skeleton-generator</b><br>
+<b>generate-skeleton</b><br>
 generates a program skeleton with nicely commented sections, and optionally includes useful macros and definitions.
 
 <b>escape-double-quotes</b><br>
