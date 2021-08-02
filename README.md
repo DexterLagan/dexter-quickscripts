@@ -2,16 +2,17 @@
 
 A collection of useful QuickScripts for DrRacket.
 
-<h2>How to Install:</h2>
+## How to Install:
+
 Copy the scripts to your quickscript folder. On Windows, this path is:<br>
 <pre>
 %USERPROFILE%\AppData\Roaming\Racket\quickscript\user-scripts
 </pre>
 
-<h2>How to Use:</h2>
+## How to Use
 In DrRacket, click on the 'Scripts' menu, and click on the script you want to use.
 
-<h2>What does each script do?</h2>
+## What does each script do?
 
 <b>compile-standalone</b><br>
 compiles the current program to a standalone binary, and automatically imports an icon (located in ./icon). Unlike DrRacket's default compilation option, it does not zip the resulting files.
@@ -25,7 +26,6 @@ generates a program skeleton with nicely commented sections, and optionally incl
 <b>escape-double-quotes</b><br>
 adds a back-slash ('\') before every double-quote ('"') in the selection.
 
-<br>
-Cheers,<br><br>
+## License
 
-Dexter
+My Quick Scripts is free software; see [LICENSE](https://github.com/DexterLagan/quick-scripts/blob/master/LICENSE) for more details.
