@@ -14,16 +14,17 @@ In DrRacket, click on the 'Scripts' menu, and click on the script you want to us
 
 ## What does each script do?
 
-<b>compile-standalone</b><br>
+### compile-standalone
+
 compiles the current program to a standalone binary, and automatically imports an icon (located in ./icon). Unlike DrRacket's default compilation option, it does not zip the resulting files.
 
-<b>generate-provide</b><br>
+### generate-provide
 generates a provide form for the current module, and automatically writes a summary of each exported function.
 
-<b>generate-skeleton</b><br>
+### generate-skeleton
 generates a program skeleton with nicely commented sections, and optionally includes useful macros and definitions.
 
-<b>escape-double-quotes</b><br>
+### escape-double-quotes
 adds a back-slash ('\') before every double-quote ('"') in the selection.
 
 ## License
