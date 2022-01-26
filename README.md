@@ -47,8 +47,8 @@ can be modified to your taste without being modified when the original
 script is updated.
 
 In particular, if you want to change the default label, menu path or
-keybinding of a script installed from `quickscript-extra`, go to
-`Scripts|Manage|Library...`, select the `quickscript-extra` directory,
+keybinding of a script installed from `dexter-quickscripts`, go to
+`Scripts|Manage|Library...`, select the `dexter-quickscripts` directory,
 then the script you want, and click on `Shadow`. This opens a new
 (shadow) script that calls the original script where you can change what
 you want.
