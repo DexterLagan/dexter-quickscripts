@@ -1,13 +1,13 @@
-# Quickscript Extra
+# Dexter's Quickscripts
 
 Some scripts for [Quickscript](https://github.com/Metaxal/quickscript).
 
 ## 1. Installation
 
 In DrRacket, in `File|Package manager|Source`, enter
-`quickscript-extra`.
+`dexter-quickscripts`.
 
-Or, on the command line, type: `raco pkg install quickscript-extra`.
+Or, on the command line, type: `raco pkg install dexter-quickscripts`.
 
 If DrRacket is already running, click on `Scripts|Manage scripts|Compile
 scripts and reload menu`.
