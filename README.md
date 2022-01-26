@@ -25,7 +25,7 @@ generates a provide form for the current module, and automatically writes a summ
 generates a program skeleton with nicely commented sections, and optionally includes useful macros and definitions.
 
 ### escape-double-quotes
-adds a back-slash ('\') before every double-quote ('"') in the selection.
+adds a back-slash ('\\') before every double-quote ('"') in the selection.
 
 ## License
 
