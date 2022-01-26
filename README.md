@@ -38,7 +38,7 @@ Scripts can be selectively deactivated from the library
 \(`Scripts|Manage scripts|Library`).
 
 If you change the source code of a script installed from the
-`quickscript-extra` package \(or from any package containing
+`dexter-quickscripts` package \(or from any package containing
 quickscripts\), you will lose all your modifications when the package is
 updated. To avoid this, you can use Quickscript’s [shadow
 scripts](https://docs.racket-lang.org/quickscript/index.html?q=quickscripts#%28part._.Shadow_scripts%29):
