@@ -58,4 +58,4 @@ menu entries and keybindings.
 
 ## 4. License
 
-Database Master is free software; see [LICENSE](https://github.com/DexterLagan/dexter-quickscripts/blob/main/LICENSE) for more details.
+Dexter's QuickScripts are free software; see [LICENSE](https://github.com/DexterLagan/dexter-quickscripts/blob/main/LICENSE) for more details.
