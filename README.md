@@ -32,58 +32,7 @@ scripts and reload menu`.
 
   Generates a program skeleton with nicely commented sections, and optionally includes useful macros and definitions.
 
-## 3. url2script
-
-The `url2script` script is special: it allows you to easily fetch
-single-file quickscripts from anywhere on the internet by providing the
-url to the raw code. It is actually a little smarter than that because
-it understands non-raw urls from [github
-gists](https://gist.github.com), [gitlab
-snippets](https://gitlab.com/snippets), [pastebin](https://pastebin.com)
-and [pasterack](http://pasterack.org).
-
-Some single-file scripts can be found on the [Racket
-wiki](https://github.com/racket/racket/wiki/Quickscript-Scripts-for-DrRacket).
-
-A script previously fetched with url2script can also be easily updated
-by first opening it via `Scrits|Manage|Open script...` then clicking on
-`Scripts|url2script|Update current script`.
-
-When a script is fetched by `url2script`, a `"url2script-info"`
-submodule is automatically added (unless one already exists) with
-information about the filename in which the script is to be saved (or
-has been saved), and the original url of the script. The latter is used
-for updating the script as described above. The submodule looks like
-this:
-
-```racket
-(module url2script-info racket/base                             
- (provide url filename)                                         
- (define filename "the-default-filename-to-save-the-script.rkt")
- (define url "https://url.of.the/script.rkt"))                  
-```
-
-If you want to publish a single-file quickscript without making a
-package, consider adding this submodule so as to provide a default
-filename (otherwise the user who fetches your script will have to type
-one themselves, and may be unsure what name to pick).
-
-Also consider adding a permissive license. We recommend a dual license
-Apache 2.0 / MIT:
-
-```racket
-;;; Copyright <year> <email or name or entity>                        
-;;; License: [Apache License, Version                                 
-2.0](http://www.apache.org/licenses/LICENSE-2.0) or                   
-;;;          [MIT license](http://opensource.org/licenses/MIT) at your
-option.                                                               
-```
-
-Scripts fetched by `url2script` are added to the default script
-directory. They can be modified as desired (as long as the license
-permits it)
-
-## 4. Customizing
+## 3. Customizing
 
 Scripts can be selectively deactivated from the library
 \(`Scripts|Manage scripts|Library`).
