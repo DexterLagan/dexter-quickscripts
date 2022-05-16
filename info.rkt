@@ -1,6 +1,8 @@
 #lang info
 (define collection "dexter-quickscripts")
-(define deps '("base"))
+(define deps '("gui-lib"
+               "quickscript"
+               "base"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/dexter-quickscripts.scrbl" ())))
 (define pkg-desc "A collection of quick scripts for Quickscripts.")
